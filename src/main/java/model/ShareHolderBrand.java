@@ -1,30 +1,30 @@
 package model;
 
 public class ShareHolderBrand {
-    private ShareHolder shareHolder;
-    private Brand brand;
+    private int shareHolderId;
+    private int brandId;
+
+    public ShareHolderBrand(int shareHolderId, int brandId) {
+        this.shareHolderId = shareHolderId;
+        this.brandId = brandId;
+    }
 
     public ShareHolderBrand() {
     }
 
-    public ShareHolderBrand(ShareHolder shareHolder, Brand brand) {
-        this.shareHolder = shareHolder;
-        this.brand = brand;
+    public int getShareHolderId() {
+        return shareHolderId;
     }
 
-    public ShareHolder getShareHolder() {
-        return shareHolder;
+    public void setShareHolderId(int shareHolderId) {
+        this.shareHolderId = shareHolderId;
     }
 
-    public void setShareHolder(ShareHolder shareHolder) {
-        this.shareHolder = shareHolder;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 }

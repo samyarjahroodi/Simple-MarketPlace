@@ -1,20 +1,30 @@
 package model;
 
+@SuppressWarnings("unused")
 public class ShareHolder {
     private Integer id;
     private String nameOfShareHolder;
     private String phoneNumber;
     private String nationalCode;
+    private Brand brand;
 
-    public ShareHolder() {
-    }
-
-    public ShareHolder(Integer id, String nameOfShareHolder,
-                       String phoneNumber, String nationalCode) {
+    public ShareHolder(Integer id, String nameOfShareHolder, String phoneNumber, String nationalCode, Brand brand) {
         this.id = id;
         this.nameOfShareHolder = nameOfShareHolder;
         this.phoneNumber = phoneNumber;
         this.nationalCode = nationalCode;
+        this.brand = brand;
+    }
+
+    public ShareHolder() {
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     public Integer getId() {

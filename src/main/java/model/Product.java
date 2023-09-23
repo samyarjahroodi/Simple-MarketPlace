@@ -4,19 +4,19 @@ public class Product {
     private Integer id;
     private String nameOfProduct;
     private String createDate;
-    private Categories categories;
-    private Brand brand;
+    private int categoriesId;
+    private int brandId;
 
-    public Product(Integer id, String nameOfProduct, String createDate,
-                   Categories categories, Brand brand) {
+    public Product() {
+    }
+
+    public Product(Integer id,
+                   String nameOfProduct, String createDate, int categoriesId, int brandId) {
         this.id = id;
         this.nameOfProduct = nameOfProduct;
         this.createDate = createDate;
-        this.categories = categories;
-        this.brand = brand;
-    }
-
-    public Product() {
+        this.categoriesId = categoriesId;
+        this.brandId = brandId;
     }
 
     public Integer getId() {
@@ -43,19 +43,19 @@ public class Product {
         this.createDate = createDate;
     }
 
-    public Categories getCategories() {
-        return categories;
+    public int getCategoriesId() {
+        return categoriesId;
     }
 
-    public void setCategories(Categories categories) {
-        this.categories = categories;
+    public void setCategoriesId(int categoriesId) {
+        this.categoriesId = categoriesId;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 }

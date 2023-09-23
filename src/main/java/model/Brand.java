@@ -1,22 +1,31 @@
 package model;
 
+@SuppressWarnings("unused")
 public class Brand {
     private Integer id;
-    private String nameOfShareHolder;
-    private String phoneNumber;
-    private String nationalCode;
+    private String nameOfBrand;
+    private String website;
     private String description;
+    private ShareHolder[] shareHolders;
+
+    public Brand(Integer id, String nameOfBrand
+            , String website, String description, ShareHolder[] shareHolders) {
+        this.id = id;
+        this.nameOfBrand = nameOfBrand;
+        this.website = website;
+        this.description = description;
+        this.shareHolders = shareHolders;
+    }
 
     public Brand() {
     }
 
-    public Brand(Integer id, String nameOfShareHolder,
-                 String phoneNumber, String nationalCode, String description) {
-        this.id = id;
-        this.nameOfShareHolder = nameOfShareHolder;
-        this.phoneNumber = phoneNumber;
-        this.nationalCode = nationalCode;
-        this.description = description;
+    public ShareHolder[] getShareHolders() {
+        return shareHolders;
+    }
+
+    public void setShareHolders(ShareHolder[] shareHolders) {
+        this.shareHolders = shareHolders;
     }
 
     public Integer getId() {
@@ -27,28 +36,20 @@ public class Brand {
         this.id = id;
     }
 
-    public String getNameOfShareHolder() {
-        return nameOfShareHolder;
+    public String getNameOfBrand() {
+        return nameOfBrand;
     }
 
-    public void setNameOfShareHolder(String nameOfShareHolder) {
-        this.nameOfShareHolder = nameOfShareHolder;
+    public void setNameOfBrand(String nameOfBrand) {
+        this.nameOfBrand = nameOfBrand;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getWebsite() {
+        return website;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getNationalCode() {
-        return nationalCode;
-    }
-
-    public void setNationalCode(String nationalCode) {
-        this.nationalCode = nationalCode;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getDescription() {
