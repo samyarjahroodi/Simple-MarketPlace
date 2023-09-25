@@ -33,4 +33,12 @@ public class UsersRepository {
         ResultSet resultSet = preparedStatement.executeQuery();
         return resultSet.next();
     }
+
+    public boolean doesUserExist(String username) throws SQLException {
+        String checkUsername = "SELECT * from users where username = ? ";
+        PreparedStatement preparedStatement = connection.prepareStatement(checkUsername);
+        preparedStatement.setString(1, username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return resultSet.next();
+    }
 }
