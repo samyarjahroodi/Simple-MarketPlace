@@ -1,7 +1,10 @@
 package validation;
 
+import repository.UsersRepository;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +12,10 @@ import java.util.regex.Pattern;
 @SuppressWarnings("unused")
 public class Validation {
     Scanner input = new Scanner(System.in);
+    UsersRepository usersRepository = new UsersRepository();
+
+    public Validation() throws SQLException {
+    }
 
     public String isValidEmail() {
         String email = input.next();
@@ -25,23 +32,43 @@ public class Validation {
         return null;
     }
 
-
-    public String isValidURL() {
-        String urlString = input.next();
-        try {
-            URL url = new URL(urlString);
-
-            if ("http".equals(url.getProtocol()) || "https".equals(url.getProtocol())) {
-                System.out.println("URL SUCCESSFULLY ADDED TO THE DATABASE");
+    public String nationalCodeValidation() {
+        String regex = "^\\d{10}$";
+        String nationalCode;
+        Pattern pattern = Pattern.compile(regex);
+        while (true) {
+            nationalCode = input.next();
+            Matcher matcher = pattern.matcher(nationalCode);
+            if (matcher.matches()) {
+                System.out.println("VALID NATIONAL NUMBER");
+                break;
+            } else {
+                System.out.println("THERE IS PROBLEM!!");
             }
-        } catch (MalformedURLException e) {
-            System.out.println("THERE IS A PROBLEM");
-            System.exit(0);
         }
-        return null;
+        return nationalCode;
     }
 
-    public String isValidPassword() {
+
+    public String isValidURL() {
+        String urlString;
+        while (true) {
+            System.out.println("Enter a URL: ");
+            urlString = input.next();
+            try {
+                URL url = new URL(urlString);
+
+                if ("http".equals(url.getProtocol()) || "https".equals(url.getProtocol())) {
+                    System.out.println("URL SUCCESSFULLY ADDED TO THE DATABASE");
+                    return urlString;
+                }
+            } catch (MalformedURLException e) {
+                System.out.println("INVALID URL. PLEASE TRY AGAIN.");
+            }
+        }
+    }
+
+    public String isValidPasswordForRegistration() {
         String password;
         String confirmPassword;
         String regex = "^(?=.*[0-9])"
@@ -65,7 +92,7 @@ public class Validation {
             }
         } while (!password.equals(confirmPassword));
 
-        System.out.println("Registration successful!");
+        System.out.println("Registration unsuccessful!");
 
         return password;
     }
@@ -73,9 +100,9 @@ public class Validation {
     public String telephoneNumberValidation() {
         String regex = "^(\\+98|0|98)?(9\\d{9}|[1-8]\\d{7})$";
         Pattern pattern = Pattern.compile(regex);
-        String telephoneNumber = input.next();
+        String telephoneNumber;
         while (true) {
-            System.out.println("Enter your telephone number");
+            telephoneNumber = input.next();
             Matcher matcher = pattern.matcher(telephoneNumber);
             if (matcher.matches()) {
                 System.out.println("VALID TELEPHONE NUMBER");
@@ -86,22 +113,4 @@ public class Validation {
         }
         return telephoneNumber;
     }
-
-    public String nationalCodeValidation() {
-        String regex = "^\\d{10}$";
-        Pattern pattern = Pattern.compile(regex);
-        String nationalCode = input.next();
-        Matcher matcher = pattern.matcher(nationalCode);
-        while (true) {
-            if (matcher.matches()) {
-                System.out.println("VALID NATIONAL NUMBER");
-                break;
-            } else {
-                System.out.println("THERE IS PROBLEM!!");
-            }
-        }
-        return nationalCode;
-    }
-
-
 }
