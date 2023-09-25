@@ -5,6 +5,7 @@ import model.ShareHolder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("unused")
@@ -31,15 +32,24 @@ public class ShareHolderRepository {
         return preparedStatement.executeUpdate();
     }
 
-    public int edit(int id) throws SQLException {
-        String edit = "UPDATE brand set nameOfShareHolder=?,phoneNumber=?,nationalCode=? where id=? ";
-        ShareHolder shareHolder = new ShareHolder();
+    public int edit(ShareHolder updatedShareHolder) throws SQLException {
+        String edit = "UPDATE shareHolder SET nameOfShareHolder=?, phoneNumber=?, nationalCode=? WHERE id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(edit);
-        preparedStatement.setString(1, shareHolder.getNameOfShareHolder());
-        preparedStatement.setString(2, shareHolder.getPhoneNumber());
-        preparedStatement.setString(3, shareHolder.getNationalCode());
-        preparedStatement.setInt(4, id);
+        preparedStatement.setString(1, updatedShareHolder.getNameOfShareHolder());
+        preparedStatement.setString(2, updatedShareHolder.getPhoneNumber());
+        preparedStatement.setString(3, updatedShareHolder.getNationalCode());
+        preparedStatement.setInt(4, updatedShareHolder.getId());
         return preparedStatement.executeUpdate();
     }
+
+
+    public boolean exist(int id) throws SQLException {
+        String exist = "SELECT 1 FROM shareHolder WHERE id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(exist);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return resultSet.next();
+    }
+
 }
 
