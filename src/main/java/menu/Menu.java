@@ -1,7 +1,13 @@
 package menu;
 
+//import applcationContext.ApplocationContext;
+
 import model.Categories;
 import model.ShareHolder;
+import repository.CategoriesRepository;
+import repository.ProductRepository;
+import repository.ShareHolderRepository;
+import repository.UsersRepository;
 import service.*;
 import validation.Validation;
 
@@ -10,10 +16,11 @@ import java.util.Scanner;
 
 @SuppressWarnings("unused")
 public class Menu {
+
     Scanner scanner = new Scanner(System.in);
+    UsersService usersService = new UsersService();
     BrandService brandService = new BrandService();
     CategoriesService categoriesService = new CategoriesService();
-    UsersService usersService = new UsersService();
     ProductService productService = new ProductService();
     Validation validation = new Validation();
     ShareHolderService shareHolderService = new ShareHolderService();
@@ -60,7 +67,7 @@ public class Menu {
                 case 1:
                     System.out.println("1- Add a new brand");
                     System.out.println("2- Delete a brand base on id");
-                    System.out.println("2- Edit a brand base on id");
+                    System.out.println("3- Edit a brand base on id");
                     int choice1 = scanner.nextInt();
                     if (choice1 == 1) {
                         brandService.register();
@@ -75,7 +82,7 @@ public class Menu {
                 case 2:
                     System.out.println("1- Add a new share holder");
                     System.out.println("2- Delete a share holder base on id");
-                    System.out.println("2- Edit a share holder base on id");
+                    System.out.println("3- Edit a share holder base on id");
                     int choice4 = scanner.nextInt();
                     if (choice4 == 1) {
                         shareHolderService.register();
@@ -84,13 +91,13 @@ public class Menu {
                         shareHolderService.remove();
                         break;
                     } else if (choice4 == 3) {
-                        shareHolderService.rewrite();
+                        shareHolderService.editShareHolder();
                         break;
                     }
                 case 3:
                     System.out.println("1- Add a new category");
                     System.out.println("2- Delete a category base on id");
-                    System.out.println("2- Edit a category base on id");
+                    System.out.println("3- Edit a category base on id");
                     int choice2 = scanner.nextInt();
                     if (choice2 == 1) {
                         categoriesService.register();
@@ -99,15 +106,17 @@ public class Menu {
                         categoriesService.remove();
                         break;
                     } else if (choice2 == 3) {
-                        categoriesService.rewrite();
+                        categoriesService.editCategories();
                         break;
                     }
                 case 4:
                     System.out.println("1- Add a new product");
                     System.out.println("2- Delete a product base on id");
-                    System.out.println("2- Edit a product base on id");
+                    System.out.println("3- Edit a product base on id");
                     int choice3 = scanner.nextInt();
                     if (choice3 == 1) {
+                        brandService.show();
+                        categoriesService.show();
                         productService.register();
                         break;
                     } else if (choice3 == 2) {
