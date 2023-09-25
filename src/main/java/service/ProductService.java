@@ -46,11 +46,30 @@ public class ProductService {
     public void rewrite() throws SQLException {
         System.out.println("Enter the id of the product that you want to edit");
         int id = scanner.nextInt();
-        int result = productRepository.delete(id);
-        if (result != 0) {
-            System.out.println("SUCCESSFULLY EDITED IN THE DATABASE");
-        } else {
-            System.out.println("THERE IS A PROBLEM!!");
+        Product updatedProduct = new Product();
+        updatedProduct.setId(id);
+        System.out.println("Enter the name of the product!!");
+        updatedProduct.setNameOfProduct(scanner.next());
+        System.out.println("Enter created date!!");
+        updatedProduct.setCreateDate(scanner.next());
+        System.out.println("Enter category id");
+        updatedProduct.setCategoriesId(scanner.nextInt());
+        System.out.println("Enter brand id");
+        updatedProduct.setBrandId(scanner.nextInt());
+        try {
+            boolean productExists = productRepository.exist(id);
+            if (!productExists) {
+                System.out.println("Product with id " + updatedProduct.getId() + " not found");
+                return;
+            }
+            int result = productRepository.edit(updatedProduct);
+            if (result != 0) {
+                System.out.println("Product with ID " + id + " has been successfully updated.");
+            } else {
+                System.out.println("There was a problem with updating the shareholder");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

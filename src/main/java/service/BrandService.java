@@ -45,12 +45,42 @@ public class BrandService {
 
     public void rewrite() throws SQLException {
         System.out.println("Enter the id of the brand that you want to edit");
+        Brand updatedBrand = new Brand();
+
         int id = scanner.nextInt();
-        int result = brandRepository.edit(id);
-        if (result != 0) {
-            System.out.println("SUCCESSFULLY EDITED IN THE DATABASE");
-        } else {
-            System.out.println("THERE IS A PROBLEM!!");
+        updatedBrand.setId(id);
+
+        scanner.nextLine();
+
+        System.out.println("Enter the name of the brand");
+        updatedBrand.setNameOfBrand(scanner.nextLine());
+
+        System.out.println("Enter URL of the brand");
+        updatedBrand.setWebsite(validation.isValidURL());
+
+        System.out.println("Enter description of the website");
+        updatedBrand.setDescription(scanner.nextLine());
+
+        try {
+            boolean updatedBrandExist = brandRepository.exist(id);
+            if (!updatedBrandExist) {
+                System.out.println("Brand with ID " + id + " not found.");
+                return;
+            }
+            int result = brandRepository.edit(updatedBrand);
+            if (result != 0) {
+                System.out.println("Brand with ID " + id + " has been successfully updated.");
+            } else {
+                System.out.println("There is a problem with updating the brand.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
+
+
+    public void show() throws SQLException {
+        System.out.println("NAME OF BRANDS:");
+        brandRepository.showBrands();
     }
 }
