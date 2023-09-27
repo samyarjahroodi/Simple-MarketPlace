@@ -1,6 +1,8 @@
 package validation;
 
 import repository.UsersRepository;
+import service.UsersService;
+import utlity.ApplicationContext;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,7 +14,6 @@ import java.util.regex.Pattern;
 @SuppressWarnings("unused")
 public class Validation {
     Scanner input = new Scanner(System.in);
-    UsersRepository usersRepository = new UsersRepository();
 
     public Validation() throws SQLException {
     }

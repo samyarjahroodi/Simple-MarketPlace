@@ -8,11 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("unused")
 public class UsersRepository {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private Connection connection;
 
-    public UsersRepository() throws SQLException {
+    public UsersRepository(Connection connection) {
+        this.connection = connection;
     }
 
     public int saveUser(Users users) throws SQLException {

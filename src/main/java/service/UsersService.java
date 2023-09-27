@@ -9,11 +9,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UsersService {
-    UsersRepository usersRepository = new UsersRepository();
+    private final UsersRepository usersRepository;
     Validation validation = new Validation();
     Scanner scanner = new Scanner(System.in);
 
-    public UsersService() throws SQLException {
+    public UsersService(UsersRepository usersRepository) throws SQLException {
+        this.usersRepository = usersRepository;
     }
 
     public void register() throws SQLException {
@@ -45,7 +46,7 @@ public class UsersService {
 
             if (usernameExists) {
                 System.out.println("YOUR USERNAME EXISTS");
-                users.setUsername(username); // Set the username in the Users object
+                users.setUsername(username);
             } else {
                 System.out.println("THERE IS NO MATCH IN DATABASE");
             }
