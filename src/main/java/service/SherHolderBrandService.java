@@ -51,6 +51,7 @@ public class SherHolderBrandService {
         System.out.println("Enter the ID of the shareholder-brand association you want to edit:");
         int shareHolderBrandId = scanner.nextInt();
         scanner.nextLine();
+        sharHolderBrandRepository.show();
 
         ShareHolderBrand updatedShareHolderBrand = new ShareHolderBrand();
         updatedShareHolderBrand.setId(shareHolderBrandId);
