@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS brand
 );
 CREATE TABLE IF NOT EXISTS shareHolder_brand
 (
+    id            serial primary key,
     shareHolderId int references shareHolder,
     brandId       int references brand
 );
@@ -80,3 +81,7 @@ VALUES ('User1', 'user1', 'user1@example.com', 'password1'),
        ('User3', 'user3', 'user3@example.com', 'password3'),
        ('User4', 'user4', 'user4@example.com', 'password4'),
        ('User5', 'user5', 'user5@example.com', 'password5');
+SELECT sb.id, b.nameOfBrand, sH.nameOfShareHolder
+from shareHolder_brand as sb
+         inner join shareHolder sH on sH.id = sb.shareHolderId
+         inner join brand b on b.id = sb.brandId;
