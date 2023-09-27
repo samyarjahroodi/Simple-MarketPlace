@@ -1,14 +1,8 @@
 package menu;
 
-//import applcationContext.ApplocationContext;
 
-import model.Categories;
-import model.ShareHolder;
-import repository.CategoriesRepository;
-import repository.ProductRepository;
-import repository.ShareHolderRepository;
-import repository.UsersRepository;
 import service.*;
+import utlity.ApplicationContext;
 import validation.Validation;
 
 import java.sql.SQLException;
@@ -18,12 +12,14 @@ import java.util.Scanner;
 public class Menu {
 
     Scanner scanner = new Scanner(System.in);
-    UsersService usersService = new UsersService();
-    BrandService brandService = new BrandService();
-    CategoriesService categoriesService = new CategoriesService();
-    ProductService productService = new ProductService();
+    UsersService usersService = ApplicationContext.getUserService();
+    BrandService brandService = ApplicationContext.getBrandService();
+    CategoriesService categoriesService = ApplicationContext.getCategoriesService();
+    ProductService productService = ApplicationContext.getProductService();
+    ShareHolderService shareHolderService = ApplicationContext.getShareHolderService();
+    SherHolderBrandService sherHolderBrandService = ApplicationContext.getSherHolderBrandService();
     Validation validation = new Validation();
-    ShareHolderService shareHolderService = new ShareHolderService();
+
 
     public Menu() throws SQLException {
     }
@@ -57,7 +53,8 @@ public class Menu {
             System.out.println("2- Share holders");
             System.out.println("3- Categories");
             System.out.println("4- Product");
-            System.out.println("5- If you want to quite press 5");
+            System.out.println("5- connect share holders with brands");
+            System.out.println("6- If you want to quite press 5");
             System.out.println();
             System.out.println("********************************************************************************************************");
             System.out.println("************************************ Developed by Samyar Jahroodi **************************************");
@@ -127,6 +124,21 @@ public class Menu {
                         break;
                     }
                 case 5:
+                    System.out.println("1- Connect a new shareholder to brands");
+                    System.out.println("2- Delete a share holder base on id for brands");
+                    System.out.println("3- Edit a share holder base on id for brands");
+                    int choice6 = scanner.nextInt();
+                    if (choice6 == 1) {
+                        sherHolderBrandService.registerShareHolderBrand();
+                        break;
+                    } else if (choice6 == 2) {
+                        sherHolderBrandService.editShareHolderBrand();
+                        break;
+                    } else if (choice6 == 3) {
+                        sherHolderBrandService.editShareHolderBrand();
+                        break;
+                    }
+                case 6:
                     if (choices == 5) {
                         System.out.println("Getting out of management system");
                         System.exit(0);
