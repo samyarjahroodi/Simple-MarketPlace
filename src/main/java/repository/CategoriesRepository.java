@@ -9,16 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("unused")
 public class CategoriesRepository {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private final Connection connection;
 
-    public CategoriesRepository() throws SQLException {
+    public CategoriesRepository(Connection connection) {
+        this.connection = connection;
     }
 
-
-    public int add() throws SQLException {
-        Categories categories = new Categories();
+    public int add(Categories categories) throws SQLException {
         String add = "INSERT INTO categories(nameOfCategories,description)values (?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(add);
         preparedStatement.setString(1, categories.getNameOfCategories());

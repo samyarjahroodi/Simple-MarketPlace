@@ -11,8 +11,11 @@ import java.sql.SQLException;
 
 @SuppressWarnings("unused")
 public class ProductRepository {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private  Connection connection;
+
+    public ProductRepository(Connection connection) {
+        this.connection = connection;
+    }
 
     public ProductRepository() throws SQLException {
     }

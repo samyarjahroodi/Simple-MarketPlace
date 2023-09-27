@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ShareHolderService {
-    ShareHolderRepository shareHolderRepository = new ShareHolderRepository();
-    Scanner scanner = new Scanner(System.in);
+    private ShareHolderRepository shareHolderRepository;
     Validation validation = new Validation();
 
-    public ShareHolderService() throws SQLException {
+    Scanner scanner = new Scanner(System.in);
+
+    public ShareHolderService(ShareHolderRepository shareHolderRepository) throws SQLException {
+        this.shareHolderRepository = shareHolderRepository;
     }
 
     public void register() throws SQLException {
@@ -43,7 +45,6 @@ public class ShareHolderService {
             System.out.println("THERE IS A PROBLEM!!");
         }
     }
-
 
 
     public void editShareHolder() throws SQLException {
@@ -85,5 +86,6 @@ public class ShareHolderService {
             e.printStackTrace();
         }
     }
+
 }
 

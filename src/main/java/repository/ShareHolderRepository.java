@@ -10,8 +10,11 @@ import java.sql.SQLException;
 
 @SuppressWarnings("unused")
 public class ShareHolderRepository {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private Connection connection;
+
+    public ShareHolderRepository(Connection connection) {
+        this.connection = connection;
+    }
 
     public ShareHolderRepository() throws SQLException {
     }

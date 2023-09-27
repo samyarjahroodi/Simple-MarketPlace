@@ -8,10 +8,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CategoriesService {
-    CategoriesRepository categoriesRepository = new CategoriesRepository();
+    private final CategoriesRepository categoriesRepository;
     Scanner scanner = new Scanner(System.in);
 
-    public CategoriesService() throws SQLException {
+    public CategoriesService(CategoriesRepository categoriesRepository) {
+        this.categoriesRepository = categoriesRepository;
     }
 
     public void register() throws SQLException {
@@ -20,7 +21,7 @@ public class CategoriesService {
         categories.setNameOfCategories(scanner.next());
         System.out.println("Enter a description for the category");
         categories.setDescription(scanner.next());
-        int result = categoriesRepository.add();
+        int result = categoriesRepository.add(categories);
         if (result != 0) {
             System.out.println("Categories successfully added");
         } else {

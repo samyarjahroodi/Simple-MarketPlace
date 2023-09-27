@@ -8,8 +8,13 @@ import java.util.Scanner;
 
 @SuppressWarnings("unused")
 public class ProductService {
-    ProductRepository productRepository = new ProductRepository();
     Scanner scanner = new Scanner(System.in);
+
+    private ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public ProductService() throws SQLException {
     }

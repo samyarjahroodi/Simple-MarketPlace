@@ -8,11 +8,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class BrandService {
-    BrandRepository brandRepository = new BrandRepository();
+    private final BrandRepository brandRepository;
     Validation validation = new Validation();
     Scanner scanner = new Scanner(System.in);
 
-    public BrandService() throws SQLException {
+    public BrandService(BrandRepository brandRepository) throws SQLException {
+        this.brandRepository = brandRepository;
     }
 
     public void register() throws SQLException {

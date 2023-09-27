@@ -10,11 +10,12 @@ import java.sql.SQLException;
 
 @SuppressWarnings("unused")
 public class BrandRepository {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private Connection connection;
 
-    public BrandRepository() throws SQLException {
+    public BrandRepository(Connection connection) {
+        this.connection = connection;
     }
+
 
     public int save(Brand brand) throws SQLException {
         String insert = "INSERT INTO brand(nameOfBrand,website,description)values (?,?,?)";
